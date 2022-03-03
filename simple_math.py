@@ -1,5 +1,24 @@
 """
-A collection of simple math operations
+A collection of simple math operations for two numbers a,b
+
+    Parameters
+    ----------
+    a : type
+        float
+    b : type
+        float
+    x : type
+        float
+        
+    Returns
+    -------
+        float
+        
+    Warnings
+    --------
+    for simmple_div b = 0 is undefined
+    
+    
 """
 
 def simple_add(a,b):
@@ -21,4 +40,4 @@ def poly_second(x, a0, a1, a2):
     return poly_first(x, a0, a1) + a2*(x**2)
 
 # Feel free to expand this list with more interesting mathematical operations...
-# .....
+# ....
