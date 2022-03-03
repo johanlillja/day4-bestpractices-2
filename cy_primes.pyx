@@ -1,10 +1,6 @@
-import numpy
-
-"""
- Calculates first kmax primes 
-"""
-def primes(kmax):
-    p = numpy.zeros((1000),dtype=numpy.int)
+def primes(int kmax):
+    cdef int n, k, i
+    cdef int p[1000]
     result = []
     if kmax > 1000:
         kmax = 1000
@@ -12,8 +8,8 @@ def primes(kmax):
     n = 2
     while k < kmax:
         i = 0
-        while i < k and n % p[i] != 0:
-            i = i + 1
+        while i < k and n% p[i] != 0:
+            i = i +1
         if i == k:
             p[k] = n
             k = k + 1

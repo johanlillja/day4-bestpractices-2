@@ -1,8 +1,11 @@
 from math import exp
 import numpy as np
 from scipy.interpolate import Rbf
+from rbf_cython import rbf_cython
+import time
 
 # Naive python implementation of a Radial Basis Function (RBF) approximation scheme
+
 def rbf_network(X, beta, theta):
 
     N = X.shape[0]
@@ -19,12 +22,14 @@ def rbf_network(X, beta, theta):
 
     return Y
 
+
 # Scipy implementation of a Radial Basis Function (RBF) approximation scheme
+
 def rbf_scipy(X, beta):
 
     N = X.shape[0]
     D = X.shape[1]    
-    rbf = Rbf(X[:,0], X[:,1], X[:,2], X[:,3], X[:, 4], beta)
+    rbf = Rbf(X[:,0], X[:,1], X[:,2], X[:,3], X[:, 4], beta)    #vector math instead of loop
     #Xtuple = tuple([X[:, i] for i in range(D)])
     Xtuple = tuple([X[:, i] for i in range(D)])
 
@@ -46,7 +51,7 @@ beta = np.random.rand(N)
 theta = 10
 
 # Simple testing of the performance of the Python and Scipy implementations
-import time
+#import time
 
 t0 = time.time()
 rbf_network(X, beta, theta)
@@ -56,12 +61,10 @@ t0 = time.time()
 rbf_scipy(X, beta)
 print("Scipy: ", time.time() - t0)
 
-# Testing the performance of Cython
-#t0 = time.time()
-#rbf_network_cython(X, beta, theta)
-#print("Cython: ", time.time() - t0)
 
-
+t0 = time.time()
+rbf_cython(X, beta, theta)
+print("cython: ", time.time() - t0)
 
 
 
